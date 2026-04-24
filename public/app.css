@@ -61,6 +61,10 @@ select {
   font: inherit;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 button {
   border: 0;
 }

@@ -1,5 +1,11 @@
 import { cleanText, escapeHtml, formatSourceLabel } from "../lib/utils.mjs";
 
+const ASSET_VERSION = "20260424";
+
+function versionedAsset(path) {
+  return `${path}?v=${ASSET_VERSION}`;
+}
+
 function renderInlineText(value) {
   const source = String(value ?? "");
   const boldPattern = /\*\*(.+?)\*\*/g;
@@ -41,9 +47,9 @@ function renderLayout({
     <meta name="description" content="${safeDescription}">
     <meta name="theme-color" content="#f6efe3">
     <title>${escapeHtml(pageTitle)}</title>
-    <link rel="preload" href="/app.css" as="style">
-    <link rel="stylesheet" href="/app.css">
-    <script type="module" src="/app.js"></script>
+    <link rel="preload" href="${versionedAsset("/app.css")}" as="style">
+    <link rel="stylesheet" href="${versionedAsset("/app.css")}">
+    <script type="module" src="${versionedAsset("/app.js")}"></script>
   </head>
   <body class="${escapeHtml(pageClass)}">
     <a class="skip-link" href="#main-content">${escapeHtml(i18n.text("skipToContent"))}</a>
