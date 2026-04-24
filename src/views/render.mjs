@@ -1,5 +1,25 @@
 import { cleanText, escapeHtml, formatSourceLabel } from "../lib/utils.mjs";
 
+function renderInlineText(value) {
+  const source = String(value ?? "");
+  const boldPattern = /\*\*(.+?)\*\*/g;
+  let lastIndex = 0;
+  let html = "";
+
+  for (const match of source.matchAll(boldPattern)) {
+    const [fullMatch, boldText] = match;
+    const matchIndex = match.index ?? 0;
+
+    html += escapeHtml(source.slice(lastIndex, matchIndex));
+    html += `<strong>${escapeHtml(boldText)}</strong>`;
+    lastIndex = matchIndex + fullMatch.length;
+  }
+
+  html += escapeHtml(source.slice(lastIndex));
+
+  return html;
+}
+
 function renderLayout({
   title,
   description,
@@ -122,7 +142,7 @@ function renderStructuredText(text, className = "prose") {
     }
 
     const merged = cleanText(paragraph.join(" "));
-    blocks.push(`<p>${escapeHtml(merged)}</p>`);
+    blocks.push(`<p>${renderInlineText(merged)}</p>`);
     paragraph.length = 0;
   }
 
@@ -131,7 +151,7 @@ function renderStructuredText(text, className = "prose") {
       return;
     }
 
-    const items = listItems.map((item) => `<li>${escapeHtml(cleanText(item))}</li>`).join("");
+    const items = listItems.map((item) => `<li>${renderInlineText(cleanText(item))}</li>`).join("");
     blocks.push(`<${listType}>${items}</${listType}>`);
     listItems = [];
     listType = null;
@@ -213,8 +233,8 @@ function renderLanguageCards(languages, i18n) {
             ${renderChip(i18n.lessonCount(language.lessonCount), "soft")}
             ${language.interfaceLanguages.length ? renderChip(language.interfaceLanguages.join(" / "), "default") : ""}
           </div>
-          <h2>${escapeHtml(language.name)}</h2>
-          <p>${escapeHtml(i18n.text("languageCardDescription", language.name))}</p>
+          <h2>${renderInlineText(language.name)}</h2>
+          <p>${renderInlineText(i18n.text("languageCardDescription", language.name))}</p>
           <div class="language-card-footer">
             ${renderButton(`/languages/${language.slug}`, i18n.text("browseLessons"), "dark")}
           </div>
@@ -240,15 +260,15 @@ function renderLessonListing(language, i18n) {
             ${renderChip(i18n.statusLabel(lesson.statusKey), lesson.statusKey === "unverified" ? "warm" : "default")}
             ${renderChip(lesson.interfaceLanguage, "soft")}
           </div>
-          <h2><a href="${escapeHtml(lesson.href)}">${escapeHtml(lesson.title)}</a></h2>
-          <p>${escapeHtml(lesson.summary || i18n.text("lessonSummaryFallback"))}</p>
+          <h2><a href="${escapeHtml(lesson.href)}">${renderInlineText(lesson.title)}</a></h2>
+          <p>${renderInlineText(lesson.summary || i18n.text("lessonSummaryFallback"))}</p>
           <div class="chip-row">
             ${renderChip(i18n.sectionCount(lesson.sectionCount))}
             ${renderChip(i18n.drillCount(lesson.drillCount))}
             ${lesson.version ? renderChip(`v${lesson.version}`) : ""}
           </div>
           <div class="lesson-listing-footer">
-            <span class="meta-inline">${escapeHtml(lesson.date || i18n.text("dateNotProvided"))}</span>
+            <span class="meta-inline">${renderInlineText(lesson.date || i18n.text("dateNotProvided"))}</span>
             ${renderButton(lesson.href, i18n.text("openLesson"), "primary")}
           </div>
         </article>`,
@@ -269,8 +289,8 @@ function renderExample(example, index, i18n) {
   return `<div class="example-card">
     <div class="example-label">${escapeHtml(i18n.text("example"))} ${index + 1}</div>
     <div class="example-grid">
-      ${target ? `<div><h3>${escapeHtml(i18n.text("target"))}</h3><p class="example-sentence">${escapeHtml(target)}</p></div>` : ""}
-      ${source ? `<div><h3>${escapeHtml(i18n.text("meaning"))}</h3><p>${escapeHtml(source)}</p></div>` : ""}
+      ${target ? `<div><h3>${escapeHtml(i18n.text("target"))}</h3><p class="example-sentence">${renderInlineText(target)}</p></div>` : ""}
+      ${source ? `<div><h3>${escapeHtml(i18n.text("meaning"))}</h3><p>${renderInlineText(source)}</p></div>` : ""}
     </div>
     ${description ? renderStructuredText(description, "prose compact-prose") : ""}
   </div>`;
@@ -289,7 +309,7 @@ function renderSections(lesson, i18n) {
             <div class="section-index">${String(index + 1).padStart(2, "0")}</div>
             <div>
               <p class="section-kicker">${escapeHtml(i18n.text("focus"))}</p>
-              <h2>${escapeHtml(section.focus || i18n.text("lessonSectionFallback"))}</h2>
+              <h2>${renderInlineText(section.focus || i18n.text("lessonSectionFallback"))}</h2>
             </div>
           </div>
           ${renderStructuredText(section.description)}
@@ -318,8 +338,8 @@ function renderTranslationDrills(lesson, i18n) {
         .map(
           (drill, index) => `<article class="drill-item">
             <span class="drill-index">${String(index + 1).padStart(2, "0")}</span>
-            <p class="drill-source">${escapeHtml(drill.source || i18n.text("sourceTextMissing"))}</p>
-            <p class="drill-target">${escapeHtml(drill.target || i18n.text("targetTextMissing"))}</p>
+            <p class="drill-source">${renderInlineText(drill.source || i18n.text("sourceTextMissing"))}</p>
+            <p class="drill-target">${renderInlineText(drill.target || i18n.text("targetTextMissing"))}</p>
           </article>`,
         )
         .join("")}
@@ -347,9 +367,9 @@ function renderSources(lesson, i18n) {
       ${groups
         .map(
           ([groupName, values]) => `<section class="source-group">
-            <h3>${escapeHtml(formatSourceLabel(groupName))}</h3>
+            <h3>${renderInlineText(formatSourceLabel(groupName))}</h3>
             <div class="source-pill-list">
-              ${values.map((value) => `<span class="source-pill">${escapeHtml(value)}</span>`).join("")}
+              ${values.map((value) => `<span class="source-pill">${renderInlineText(value)}</span>`).join("")}
             </div>
           </section>`,
         )
@@ -368,30 +388,24 @@ export function renderHomePage(library, view) {
     showHeader: false,
     i18n,
     content: `<section class="panel panel-tight">
-      <div class="panel-heading">
-        <div>
-          <p class="section-kicker">${escapeHtml(i18n.text("chooseLanguage"))}</p>
-          <h1>${escapeHtml(i18n.text("availableLessonCollections"))}</h1>
-        </div>
-      </div>
       ${renderLanguageCards(library.languages, i18n)}
     </section>
     <section id="about-dig4el" class="panel info-panel">
       <div class="panel-heading">
         <div>
           <p class="section-kicker">${escapeHtml(i18n.text("aboutDig4el"))}</p>
-          <h2>${escapeHtml(i18n.text("aboutTitle"))}</h2>
+          <h2>${renderInlineText(i18n.text("aboutTitle"))}</h2>
         </div>
       </div>
       <div class="two-column">
         <div>
-          <p>${escapeHtml(i18n.text("aboutBody1"))}</p>
-          <p>${escapeHtml(i18n.text("aboutBody2"))}</p>
+          <p>${renderInlineText(i18n.text("aboutBody1"))}</p>
+          <p>${renderInlineText(i18n.text("aboutBody2"))}</p>
         </div>
         <div class="note-card">
           <p class="note-title">${escapeHtml(i18n.text("whyDesign"))}</p>
           <ul>
-            ${i18n.text("designReasons").map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}
+            ${i18n.text("designReasons").map((reason) => `<li>${renderInlineText(reason)}</li>`).join("")}
           </ul>
         </div>
       </div>
@@ -412,22 +426,11 @@ export function renderLanguagePage(language, view) {
       { label: i18n.text("navHome"), href: "/" },
       { label: language.name },
     ], i18n)}
-    <section class="hero">
-      <p class="eyebrow">${escapeHtml(i18n.text("languageLibrary"))}</p>
-      <h1>${escapeHtml(language.name)}</h1>
-      <p class="hero-text">
-        ${escapeHtml(i18n.text("languageHeroText"))}
-      </p>
-      <div class="chip-row">
-        ${renderChip(i18n.lessonCount(language.lessonCount), "soft")}
-        ${language.interfaceLanguages.length ? renderChip(language.interfaceLanguages.join(" / ")) : ""}
-      </div>
-    </section>
     <section class="panel panel-tight">
       <div class="panel-heading">
         <div>
           <p class="section-kicker">${escapeHtml(i18n.text("lessons"))}</p>
-          <h2>${escapeHtml(i18n.text("languageAvailability", language.lessonCount))}</h2>
+          <h2>${renderInlineText(i18n.text("languageAvailability", language.lessonCount))}</h2>
         </div>
       </div>
       ${renderLessonListing(language, i18n)}
@@ -452,8 +455,8 @@ export function renderLessonPage(language, lesson, view) {
     <section class="hero hero-lesson">
       <div class="hero-copy">
         <p class="eyebrow">${escapeHtml(language.name)}</p>
-        <h1>${escapeHtml(lesson.title)}</h1>
-        <p class="hero-text">${escapeHtml(lesson.summary || lesson.introduction || i18n.text("readLessonFallback"))}</p>
+        <h1>${renderInlineText(lesson.title)}</h1>
+        <p class="hero-text">${renderInlineText(lesson.summary || lesson.introduction || i18n.text("readLessonFallback"))}</p>
         <div class="chip-row">
           ${renderChip(i18n.statusLabel(lesson.statusKey), lesson.statusKey === "unverified" ? "warm" : "default")}
           ${renderChip(lesson.interfaceLanguage, "soft")}
@@ -478,8 +481,8 @@ export function renderLessonPage(language, lesson, view) {
         </button>
       </div>
       <div class="meta-strip">
-        <span>${escapeHtml(lesson.date || i18n.text("dateNotProvided"))}</span>
-        <span>${escapeHtml(lesson.fileName)}</span>
+        <span>${renderInlineText(lesson.date || i18n.text("dateNotProvided"))}</span>
+        <span>${renderInlineText(lesson.fileName)}</span>
       </div>
     </section>
     ${lesson.introduction ? `<section class="panel">${renderStructuredText(lesson.introduction)}</section>` : ""}

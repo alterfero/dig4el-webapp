@@ -399,6 +399,7 @@ h3 {
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
   line-height: 1.1;
   letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -437,6 +438,16 @@ p {
 .hero-actions,
 .lesson-actions {
   margin-top: 1.2rem;
+}
+
+.hero-copy,
+.lesson-actions,
+.meta-strip {
+  min-width: 0;
+}
+
+.lesson-actions {
+  align-self: start;
 }
 
 .button {
@@ -800,9 +811,17 @@ p {
     display: none;
   }
 
+  .lesson-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
   .lesson-actions .button,
   .hero-actions .button {
-    flex: 1 1 calc(50% - 0.33rem);
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
   }
 
   .lesson-listing-footer,

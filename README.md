@@ -87,6 +87,7 @@ Recommended settings:
 
 - Start command: `npm start`
 - Node version: `20+`
+- `railway.toml` is included to make the start command and `/health` check explicit
 
 The server reads `PORT` from the environment automatically, so no extra config is required.
 

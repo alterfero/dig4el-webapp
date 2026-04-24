@@ -17,10 +17,10 @@ function countLabel(locale, count, forms) {
 
 const messages = {
   en: {
-    siteName: "DIG4EL Lessons",
-    siteTagline: "Lightweight grammar reading on any device",
+    siteName: "DIG4EL draft lessons for teachers",
+    siteTagline: "Draft lessons for teachers",
     metaDescription:
-      "Browse DIG4EL grammar lessons in a lightweight, mobile-first web interface.",
+      "Browse DIG4EL grammar lessons on any device",
     skipToContent: "Skip to content",
     navHome: "Home",
     navLanguages: "Languages",
@@ -31,21 +31,20 @@ const messages = {
     chooseLanguage: "Choose a language",
     availableLessonCollections: "Available lesson collections",
     aboutDig4el: "About DIG4EL",
-    aboutTitle: "A lightweight reading surface for structured lesson data",
+    aboutTitle: "DIG4EL is a software supporting the creation of grammatical descriptions for endangered languages.",
     aboutBody1:
-      "This site turns DIG4EL lesson JSON into pages that are pleasant to read on a phone, easy to share, and direct to navigate.",
+      "This site displays DIG4EL lessons in a friendly format, easy to share, and direct to navigate.",
     aboutBody2:
-      "The interface is intentionally minimal: a language landing page, a lesson list, a focused reading view, and on-demand PDF export when someone needs an offline copy.",
-    whyDesign: "Why this design?",
+      "The interface is minimal to enable the use of this app on all phones and slow Internet connection.",
+    whyDesign: "Information",
     designReasons: [
-      "Small payloads and mostly server-rendered HTML",
-      "Simple URLs for each language and lesson",
-      "PDFs generated only when requested",
-      "Automatic lesson discovery from folders",
+        "These lessons are draft material meant to support teachers.",
+        "These lessons may contain errors!",
+       "For more information: Visit dig4el.org"
     ],
     noLessonsFoundYet: "No lessons found yet",
     addJsonFiles:
-      "Add JSON lesson files inside generated_lessons/<Language>/ and they will appear here automatically.",
+      "",
     browseLessons: "Browse lessons",
     languageCardDescription: (languageName) =>
       `Open the current library of ${languageName} lessons and keep reading on the same clean, phone-friendly layout.`,
@@ -67,7 +66,7 @@ const messages = {
     lessonSources: "Lesson sources",
     languageLibrary: "Language library",
     languageHeroText:
-      "Pick a lesson and read it in a distraction-light layout designed for mobile devices first.",
+      "Pick a lesson.",
     lessons: "Lessons",
     available: "available",
     readLessonFallback:
@@ -88,9 +87,9 @@ const messages = {
     serverErrorDescription:
       "Please try again in a moment. If the problem continues, check the server logs for the unreadable file.",
     footerLine1:
-      "DIG4EL lessons are read directly from JSON files in generated_lessons. PDFs are generated on demand, so there is nothing extra to store.",
+      "Don't forget lessons may contain errors!.",
     footerLine2:
-      "JSON files are listed automatically. Other file types are ignored for now.",
+        "All DIG4EL lessons are governed by a Creative Commons BY-NC license.",
     dateNotProvided: "Date not provided",
     statusLesson: "Lesson",
     statusSketch: "Sketch",
@@ -102,10 +101,10 @@ const messages = {
     itemCount: (count) => countLabel("en", count, { one: "item", other: "items" }),
   },
   fr: {
-    siteName: "Leçons DIG4EL",
-    siteTagline: "Lecture grammaticale légère sur tout appareil",
+    siteName: "Leçons provisoires DIG4EL pour les enseignants",
+    siteTagline: "Leçons provisoires pour les enseignants",
     metaDescription:
-      "Parcourez les leçons de grammaire DIG4EL dans une interface légère, pensée d'abord pour le mobile.",
+      "Parcourez les leçons de grammaire DIG4EL sur n'importe quel appareil",
     skipToContent: "Aller au contenu",
     navHome: "Accueil",
     navLanguages: "Langues",
@@ -116,21 +115,19 @@ const messages = {
     chooseLanguage: "Choisir une langue",
     availableLessonCollections: "Collections de leçons disponibles",
     aboutDig4el: "À propos de DIG4EL",
-    aboutTitle: "Une interface de lecture légère pour des leçons structurées",
+    aboutTitle: "DIG4EL est un logiciel qui soutient la création de descriptions grammaticales pour les langues en danger.",
     aboutBody1:
-      "Ce site transforme les leçons JSON de DIG4EL en pages agréables à lire sur téléphone, faciles à partager et directes à parcourir.",
+      "Ce site présente les leçons DIG4EL dans un format convivial, facile à partager et simple à parcourir.",
     aboutBody2:
-      "L'interface reste volontairement minimale : une page par langue, une liste de leçons, une lecture centrée sur le contenu et un export PDF à la demande.",
-    whyDesign: "Pourquoi ce design ?",
+      "L'interface est minimale afin de permettre l'utilisation de cette application sur tous les téléphones et avec une connexion Internet lente.",
+    whyDesign: "Informations",
     designReasons: [
-      "Des pages légères et principalement rendues côté serveur",
-      "Des URLs simples pour chaque langue et chaque leçon",
-      "Des PDF générés uniquement quand on les demande",
-      "Une détection automatique des leçons à partir des dossiers",
+      "Ces leçons sont des supports provisoires destinés à aider les enseignants.",
+      "Ces leçons peuvent contenir des erreurs !",
+      "Pour plus d'informations : visitez dig4el.org",
     ],
     noLessonsFoundYet: "Aucune leçon trouvée pour le moment",
-    addJsonFiles:
-      "Ajoutez des fichiers de leçon JSON dans generated_lessons/<Langue>/ et ils apparaîtront automatiquement ici.",
+    addJsonFiles: "",
     browseLessons: "Voir les leçons",
     languageCardDescription: (languageName) =>
       `Ouvrez la bibliothèque actuelle des leçons en ${languageName} dans une mise en page claire et pensée pour le téléphone.`,
@@ -151,8 +148,7 @@ const messages = {
     references: "Références",
     lessonSources: "Sources de la leçon",
     languageLibrary: "Bibliothèque de langue",
-    languageHeroText:
-      "Choisissez une leçon et lisez-la dans une interface épurée, d'abord pensée pour le mobile.",
+    languageHeroText: "Choisissez une leçon.",
     lessons: "Leçons",
     available: "disponibles",
     readLessonFallback:
@@ -172,10 +168,8 @@ const messages = {
     serverErrorTitle: "Un problème est survenu lors du chargement de la leçon.",
     serverErrorDescription:
       "Réessayez dans un instant. Si le problème persiste, consultez les journaux du serveur pour trouver le fichier illisible.",
-    footerLine1:
-      "Les leçons DIG4EL sont lues directement depuis les fichiers JSON de generated_lessons. Les PDF sont générés à la demande, sans stockage supplémentaire.",
-    footerLine2:
-      "Les fichiers JSON sont listés automatiquement. Les autres types de fichiers sont ignorés pour l'instant.",
+    footerLine1: "N'oubliez pas que les leçons peuvent contenir des erreurs !",
+    footerLine2: "Toutes les leçons DIG4EL sont régies par une licence Creative Commons BY-NC.",
     dateNotProvided: "Date non fournie",
     statusLesson: "Leçon",
     statusSketch: "Esquisse",
@@ -187,10 +181,10 @@ const messages = {
     itemCount: (count) => countLabel("fr", count, { one: "élément", other: "éléments" }),
   },
   es: {
-    siteName: "Lecciones DIG4EL",
-    siteTagline: "Lectura gramatical ligera en cualquier dispositivo",
+    siteName: "Lecciones provisionales DIG4EL para docentes",
+    siteTagline: "Lecciones provisionales para docentes",
     metaDescription:
-      "Consulta las lecciones de gramática DIG4EL en una interfaz ligera y pensada primero para móviles.",
+      "Consulta las lecciones de gramática DIG4EL en cualquier dispositivo",
     skipToContent: "Ir al contenido",
     navHome: "Inicio",
     navLanguages: "Idiomas",
@@ -201,21 +195,19 @@ const messages = {
     chooseLanguage: "Elige un idioma",
     availableLessonCollections: "Colecciones de lecciones disponibles",
     aboutDig4el: "Sobre DIG4EL",
-    aboutTitle: "Una superficie de lectura ligera para lecciones estructuradas",
+    aboutTitle: "DIG4EL es un software que apoya la creación de descripciones gramaticales para lenguas en peligro.",
     aboutBody1:
-      "Este sitio convierte el JSON de las lecciones DIG4EL en páginas agradables de leer en el teléfono, fáciles de compartir y directas de recorrer.",
+      "Este sitio muestra las lecciones DIG4EL en un formato amigable, fácil de compartir y directo de navegar.",
     aboutBody2:
-      "La interfaz es deliberadamente mínima: una página por idioma, una lista de lecciones, una lectura centrada y exportación PDF bajo demanda.",
-    whyDesign: "¿Por qué este diseño?",
+      "La interfaz es mínima para permitir el uso de esta aplicación en todo tipo de teléfonos y con conexiones lentas a Internet.",
+    whyDesign: "Información",
     designReasons: [
-      "Páginas pequeñas y mayormente renderizadas en el servidor",
-      "URLs simples para cada idioma y cada lección",
-      "PDF generados solo cuando se solicitan",
-      "Descubrimiento automático de lecciones desde carpetas",
+      "Estas lecciones son materiales provisionales destinados a apoyar a los docentes.",
+      "¡Estas lecciones pueden contener errores!",
+      "Para más información: visita dig4el.org",
     ],
     noLessonsFoundYet: "Todavía no se encontraron lecciones",
-    addJsonFiles:
-      "Añade archivos JSON de lecciones dentro de generated_lessons/<Idioma>/ y aparecerán aquí automáticamente.",
+    addJsonFiles: "",
     browseLessons: "Ver lecciones",
     languageCardDescription: (languageName) =>
       `Abre la biblioteca actual de lecciones en ${languageName} y sigue leyendo con la misma interfaz limpia y cómoda para móviles.`,
@@ -236,8 +228,7 @@ const messages = {
     references: "Referencias",
     lessonSources: "Fuentes de la lección",
     languageLibrary: "Biblioteca de idioma",
-    languageHeroText:
-      "Elige una lección y léela en una interfaz despejada diseñada primero para móviles.",
+    languageHeroText: "Elige una lección.",
     lessons: "Lecciones",
     available: "disponibles",
     readLessonFallback:
@@ -257,10 +248,8 @@ const messages = {
     serverErrorTitle: "Algo salió mal al cargar la lección.",
     serverErrorDescription:
       "Vuelve a intentarlo en un momento. Si el problema continúa, revisa los registros del servidor para encontrar el archivo ilegible.",
-    footerLine1:
-      "Las lecciones DIG4EL se leen directamente desde los archivos JSON de generated_lessons. Los PDF se generan bajo demanda, así que no hay nada extra que almacenar.",
-    footerLine2:
-      "Los archivos JSON se listan automáticamente. Por ahora se ignoran otros tipos de archivo.",
+    footerLine1: "No olvides que las lecciones pueden contener errores.",
+    footerLine2: "Todas las lecciones DIG4EL están regidas por una licencia Creative Commons BY-NC.",
     dateNotProvided: "Fecha no proporcionada",
     statusLesson: "Lección",
     statusSketch: "Borrador",
@@ -272,10 +261,10 @@ const messages = {
     itemCount: (count) => countLabel("es", count, { one: "elemento", other: "elementos" }),
   },
   de: {
-    siteName: "DIG4EL-Lektionen",
-    siteTagline: "Leichte Grammatiklektüre auf jedem Gerät",
+    siteName: "DIG4EL-Entwurfslektionen für Lehrkräfte",
+    siteTagline: "Entwurfslektionen für Lehrkräfte",
     metaDescription:
-      "Durchsuchen Sie DIG4EL-Grammatiklektionen in einer leichten, mobilfreundlichen Oberfläche.",
+      "Durchsuchen Sie DIG4EL-Grammatiklektionen auf jedem Gerät",
     skipToContent: "Zum Inhalt springen",
     navHome: "Start",
     navLanguages: "Sprachen",
@@ -286,21 +275,19 @@ const messages = {
     chooseLanguage: "Sprache wählen",
     availableLessonCollections: "Verfügbare Lektionensammlungen",
     aboutDig4el: "Über DIG4EL",
-    aboutTitle: "Eine leichte Leseoberfläche für strukturierte Lektionen",
+    aboutTitle: "DIG4EL ist eine Software zur Unterstützung der Erstellung grammatischer Beschreibungen für bedrohte Sprachen.",
     aboutBody1:
-      "Diese Website verwandelt DIG4EL-Lektions-JSON in Seiten, die sich auf dem Telefon angenehm lesen, leicht teilen und direkt navigieren lassen.",
+      "Diese Website zeigt DIG4EL-Lektionen in einem benutzerfreundlichen Format, das leicht zu teilen und direkt zu navigieren ist.",
     aboutBody2:
-      "Die Oberfläche ist bewusst minimal: eine Sprachseite, eine Lektionsliste, eine fokussierte Leseansicht und PDF-Export bei Bedarf.",
-    whyDesign: "Warum dieses Design?",
+      "Die Oberfläche ist bewusst minimal, damit diese App auf allen Telefonen und auch bei langsamen Internetverbindungen genutzt werden kann.",
+    whyDesign: "Informationen",
     designReasons: [
-      "Kleine Datenmengen und überwiegend serverseitig gerendertes HTML",
-      "Einfache URLs für jede Sprache und jede Lektion",
-      "PDFs werden nur bei Bedarf erzeugt",
-      "Lektionen werden automatisch aus Ordnern erkannt",
+      "Diese Lektionen sind Entwurfsmaterialien zur Unterstützung von Lehrkräften.",
+      "Diese Lektionen können Fehler enthalten!",
+      "Weitere Informationen finden Sie unter dig4el.org",
     ],
     noLessonsFoundYet: "Noch keine Lektionen gefunden",
-    addJsonFiles:
-      "Legen Sie JSON-Lektionsdateien in generated_lessons/<Sprache>/ ab, dann erscheinen sie hier automatisch.",
+    addJsonFiles: "",
     browseLessons: "Lektionen ansehen",
     languageCardDescription: (languageName) =>
       `Öffnen Sie die aktuelle Bibliothek der ${languageName}-Lektionen und lesen Sie in derselben klaren, telefonfreundlichen Ansicht weiter.`,
@@ -321,8 +308,7 @@ const messages = {
     references: "Referenzen",
     lessonSources: "Quellen der Lektion",
     languageLibrary: "Sprachbibliothek",
-    languageHeroText:
-      "Wählen Sie eine Lektion und lesen Sie sie in einer ruhigen, mobiloptimierten Ansicht.",
+    languageHeroText: "Wählen Sie eine Lektion.",
     lessons: "Lektionen",
     available: "verfügbar",
     readLessonFallback:
@@ -342,10 +328,8 @@ const messages = {
     serverErrorTitle: "Beim Laden der Lektion ist ein Problem aufgetreten.",
     serverErrorDescription:
       "Bitte versuchen Sie es gleich noch einmal. Wenn das Problem bleibt, prüfen Sie die Serverprotokolle auf eine unlesbare Datei.",
-    footerLine1:
-      "DIG4EL-Lektionen werden direkt aus JSON-Dateien in generated_lessons gelesen. PDFs werden bei Bedarf erzeugt, daher muss nichts zusätzlich gespeichert werden.",
-    footerLine2:
-      "JSON-Dateien werden automatisch aufgelistet. Andere Dateitypen werden derzeit ignoriert.",
+    footerLine1: "Bitte denken Sie daran, dass die Lektionen Fehler enthalten können.",
+    footerLine2: "Alle DIG4EL-Lektionen stehen unter einer Creative-Commons-BY-NC-Lizenz.",
     dateNotProvided: "Kein Datum angegeben",
     statusLesson: "Lektion",
     statusSketch: "Skizze",
@@ -357,10 +341,10 @@ const messages = {
     itemCount: (count) => countLabel("de", count, { one: "Eintrag", other: "Einträge" }),
   },
   ru: {
-    siteName: "Уроки DIG4EL",
-    siteTagline: "Лёгкое чтение по грамматике на любом устройстве",
+    siteName: "Черновые уроки DIG4EL для преподавателей",
+    siteTagline: "Черновые уроки для преподавателей",
     metaDescription:
-      "Просматривайте грамматические уроки DIG4EL в лёгком интерфейсе, ориентированном на мобильные устройства.",
+      "Просматривайте грамматические уроки DIG4EL на любом устройстве",
     skipToContent: "Перейти к содержимому",
     navHome: "Главная",
     navLanguages: "Языки",
@@ -377,21 +361,19 @@ const messages = {
     chooseLanguage: "Выберите язык",
     availableLessonCollections: "Доступные коллекции уроков",
     aboutDig4el: "О DIG4EL",
-    aboutTitle: "Лёгкий интерфейс чтения для структурированных уроков",
+    aboutTitle: "DIG4EL — это программное обеспечение, поддерживающее создание грамматических описаний для языков, находящихся под угрозой исчезновения.",
     aboutBody1:
-      "Этот сайт превращает JSON-уроки DIG4EL в страницы, которые удобно читать на телефоне, легко делиться ими и просто просматривать.",
+      "Этот сайт показывает уроки DIG4EL в удобном формате, которым легко делиться и который легко просматривать.",
     aboutBody2:
-      "Интерфейс намеренно минимален: страница языка, список уроков, сфокусированное чтение и экспорт PDF по запросу.",
-    whyDesign: "Почему такой дизайн?",
+      "Интерфейс сделан минималистичным, чтобы приложением можно было пользоваться на любых телефонах и при медленном интернете.",
+    whyDesign: "Информация",
     designReasons: [
-      "Небольшой объём данных и в основном серверный HTML",
-      "Простые URL для каждого языка и каждого урока",
-      "PDF создаются только по запросу",
-      "Автоматическое обнаружение уроков по папкам",
+      "Эти уроки являются черновыми материалами, предназначенными для поддержки преподавателей.",
+      "Эти уроки могут содержать ошибки!",
+      "Подробнее: посетите dig4el.org",
     ],
     noLessonsFoundYet: "Пока уроков не найдено",
-    addJsonFiles:
-      "Добавьте JSON-файлы уроков в generated_lessons/<Язык>/, и они автоматически появятся здесь.",
+    addJsonFiles: "",
     browseLessons: "Открыть уроки",
     languageCardDescription: (languageName) =>
       `Откройте текущую библиотеку уроков ${languageName} и продолжайте читать в том же чистом интерфейсе, удобном для телефона.`,
@@ -412,8 +394,7 @@ const messages = {
     references: "Источники",
     lessonSources: "Источники урока",
     languageLibrary: "Языковая библиотека",
-    languageHeroText:
-      "Выберите урок и читайте его в спокойном интерфейсе, сначала рассчитанном на мобильные устройства.",
+    languageHeroText: "Выберите урок.",
     lessons: "Уроки",
     available: "доступно",
     readLessonFallback:
@@ -433,10 +414,8 @@ const messages = {
     serverErrorTitle: "При загрузке урока что-то пошло не так.",
     serverErrorDescription:
       "Повторите попытку чуть позже. Если проблема сохранится, проверьте журналы сервера на наличие нечитаемого файла.",
-    footerLine1:
-      "Уроки DIG4EL читаются напрямую из JSON-файлов в generated_lessons. PDF создаются по запросу, поэтому ничего лишнего хранить не нужно.",
-    footerLine2:
-      "JSON-файлы отображаются автоматически. Остальные типы файлов пока игнорируются.",
+    footerLine1: "Помните, что уроки могут содержать ошибки.",
+    footerLine2: "Все уроки DIG4EL распространяются по лицензии Creative Commons BY-NC.",
     dateNotProvided: "Дата не указана",
     statusLesson: "Урок",
     statusSketch: "Черновик",
@@ -472,10 +451,10 @@ const messages = {
       }),
   },
   ja: {
-    siteName: "DIG4EL レッスン",
-    siteTagline: "どの端末でも軽やかに読める文法レッスン",
+    siteName: "DIG4EL 教員向け草稿レッスン",
+    siteTagline: "教員向け草稿レッスン",
     metaDescription:
-      "DIG4EL の文法レッスンを、軽量でモバイルファーストなインターフェースで閲覧できます。",
+      "DIG4EL の文法レッスンをどの端末でも閲覧できます",
     skipToContent: "本文へ移動",
     navHome: "ホーム",
     navLanguages: "言語",
@@ -486,21 +465,19 @@ const messages = {
     chooseLanguage: "言語を選択",
     availableLessonCollections: "利用できるレッスン一覧",
     aboutDig4el: "DIG4EL について",
-    aboutTitle: "構造化されたレッスンのための軽量な読書画面",
+    aboutTitle: "DIG4EL は、危機言語の文法記述作成を支援するソフトウェアです。",
     aboutBody1:
-      "このサイトは DIG4EL のレッスン JSON を、スマートフォンで読みやすく、共有しやすく、迷わずたどれるページに変換します。",
+      "このサイトでは、DIG4EL のレッスンを親しみやすく、共有しやすく、迷わずたどれる形式で表示します。",
     aboutBody2:
-      "画面構成は意図的に最小限です。言語ページ、レッスン一覧、集中して読める本文画面、そして必要なときだけ使う PDF 書き出しで構成されています。",
-    whyDesign: "この設計にした理由",
+      "このアプリは、あらゆる携帯電話や低速なインターネット接続でも使えるよう、インターフェースを最小限にしています。",
+    whyDesign: "情報",
     designReasons: [
-      "通信量を抑え、ほとんどをサーバー描画の HTML にするため",
-      "各言語と各レッスンにシンプルな URL を持たせるため",
-      "PDF は必要なときだけ生成するため",
-      "フォルダからレッスンを自動検出するため",
+      "これらのレッスンは、教員を支援するための草稿資料です。",
+      "これらのレッスンには誤りが含まれる場合があります。",
+      "詳しくは dig4el.org をご覧ください",
     ],
     noLessonsFoundYet: "まだレッスンが見つかっていません",
-    addJsonFiles:
-      "generated_lessons/<Language>/ に JSON レッスンファイルを追加すると、ここに自動表示されます。",
+    addJsonFiles: "",
     browseLessons: "レッスンを見る",
     languageCardDescription: (languageName) =>
       `${languageName} の現在のレッスン一覧を開き、同じすっきりしたモバイル向けレイアウトで読み進められます。`,
@@ -521,8 +498,7 @@ const messages = {
     references: "参考資料",
     lessonSources: "レッスンの出典",
     languageLibrary: "言語ライブラリ",
-    languageHeroText:
-      "レッスンを選んで、モバイル向けに整えた静かな画面で読み進めてください。",
+    languageHeroText: "レッスンを選んでください。",
     lessons: "レッスン",
     available: "件",
     readLessonFallback:
@@ -542,10 +518,8 @@ const messages = {
     serverErrorTitle: "レッスンの読み込み中に問題が発生しました。",
     serverErrorDescription:
       "しばらくしてからもう一度お試しください。問題が続く場合は、サーバーログで読み取れないファイルを確認してください。",
-    footerLine1:
-      "DIG4EL のレッスンは generated_lessons 内の JSON ファイルを直接読み込みます。PDF は必要時に生成するため、追加保存は不要です。",
-    footerLine2:
-      "JSON ファイルは自動で一覧化されます。その他の形式のファイルは現在は無視されます。",
+    footerLine1: "レッスンには誤りが含まれる場合があることにご注意ください。",
+    footerLine2: "すべての DIG4EL レッスンは Creative Commons BY-NC ライセンスの下にあります。",
     dateNotProvided: "日付未設定",
     statusLesson: "レッスン",
     statusSketch: "草案",
