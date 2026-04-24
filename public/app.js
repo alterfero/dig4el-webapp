@@ -18,6 +18,44 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+function normalizeForSearch(value) {
+  return String(value ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+const languageFilter = document.querySelector("[data-language-filter]");
+
+if (languageFilter) {
+  const languageCards = [...document.querySelectorAll("[data-language-card]")];
+  const emptyState = document.querySelector("[data-language-empty]");
+
+  const applyLanguageFilter = () => {
+    const query = normalizeForSearch(languageFilter.value);
+    let visibleCount = 0;
+
+    for (const card of languageCards) {
+      const languageName = normalizeForSearch(card.dataset.languageName);
+      const matches = !query || languageName.includes(query);
+
+      card.hidden = !matches;
+
+      if (matches) {
+        visibleCount += 1;
+      }
+    }
+
+    if (emptyState) {
+      emptyState.hidden = visibleCount > 0;
+    }
+  };
+
+  languageFilter.addEventListener("input", applyLanguageFilter);
+  applyLanguageFilter();
+}
+
 const shareButtons = document.querySelectorAll("[data-share]");
 
 for (const button of shareButtons) {

@@ -225,22 +225,26 @@ function renderLanguageCards(languages, i18n) {
     </section>`;
   }
 
+  const sortedLanguages = [...languages].sort((left, right) =>
+    left.name.localeCompare(right.name, undefined, { sensitivity: "base" }),
+  );
+
   return `<section id="languages" class="language-grid">
-    ${languages
+    ${sortedLanguages
       .map(
-        (language) => `<article class="language-card">
+        (language) => `<article class="language-card" data-language-card data-language-name="${escapeHtml(language.name)}">
           <div class="language-card-top">
             ${renderChip(i18n.lessonCount(language.lessonCount), "soft")}
             ${language.interfaceLanguages.length ? renderChip(language.interfaceLanguages.join(" / "), "default") : ""}
           </div>
           <h2>${renderInlineText(language.name)}</h2>
-          <p>${renderInlineText(i18n.text("languageCardDescription", language.name))}</p>
           <div class="language-card-footer">
             ${renderButton(`/languages/${language.slug}`, i18n.text("browseLessons"), "dark")}
           </div>
         </article>`,
       )
       .join("")}
+    <p class="language-grid-empty" data-language-empty hidden>${escapeHtml(i18n.text("noMatchingLanguages"))}</p>
   </section>`;
 }
 
@@ -261,14 +265,7 @@ function renderLessonListing(language, i18n) {
             ${renderChip(lesson.interfaceLanguage, "soft")}
           </div>
           <h2><a href="${escapeHtml(lesson.href)}">${renderInlineText(lesson.title)}</a></h2>
-          <p>${renderInlineText(lesson.summary || i18n.text("lessonSummaryFallback"))}</p>
-          <div class="chip-row">
-            ${renderChip(i18n.sectionCount(lesson.sectionCount))}
-            ${renderChip(i18n.drillCount(lesson.drillCount))}
-            ${lesson.version ? renderChip(`v${lesson.version}`) : ""}
-          </div>
           <div class="lesson-listing-footer">
-            <span class="meta-inline">${renderInlineText(lesson.date || i18n.text("dateNotProvided"))}</span>
             ${renderButton(lesson.href, i18n.text("openLesson"), "primary")}
           </div>
         </article>`,
@@ -388,6 +385,20 @@ export function renderHomePage(library, view) {
     showHeader: false,
     i18n,
     content: `<section class="panel panel-tight">
+      <div class="language-tools">
+        <label class="language-filter" for="language-filter">
+          <span class="language-filter-label">${escapeHtml(i18n.text("findLanguageLabel"))}</span>
+          <input
+            id="language-filter"
+            class="language-filter-input"
+            type="search"
+            placeholder="${escapeHtml(i18n.text("findLanguagePlaceholder"))}"
+            autocomplete="off"
+            spellcheck="false"
+            data-language-filter
+          >
+        </label>
+      </div>
       ${renderLanguageCards(library.languages, i18n)}
     </section>
     <section id="about-dig4el" class="panel info-panel">

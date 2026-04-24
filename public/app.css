@@ -524,6 +524,50 @@ p {
   gap: 1rem;
 }
 
+.language-tools {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.language-filter {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.language-filter-label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.language-filter-input {
+  width: 100%;
+  min-height: 3.2rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1.05rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.language-filter-input:focus {
+  outline: 2px solid rgba(17, 117, 109, 0.2);
+  outline-offset: 2px;
+  border-color: rgba(17, 117, 109, 0.32);
+}
+
+.language-grid-empty {
+  margin: 0;
+  padding: 1.1rem;
+  border: 1px dashed var(--border);
+  border-radius: 1.1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 .stat-card,
 .note-card {
   padding: 1rem;
@@ -549,6 +593,13 @@ p {
 .language-card,
 .section-card {
   padding: 1.1rem;
+}
+
+.language-card,
+.lesson-listing {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
 }
 
 .panel-heading,
@@ -590,6 +641,18 @@ p {
   justify-content: space-between;
   gap: 0.8rem;
   margin-top: 1rem;
+}
+
+.lesson-listing-top {
+  margin-bottom: 0.1rem;
+}
+
+.lesson-listing-footer {
+  margin-top: 0.2rem;
+}
+
+.lesson-listing-footer .button {
+  width: 100%;
 }
 
 .lesson-listing h2 a {
